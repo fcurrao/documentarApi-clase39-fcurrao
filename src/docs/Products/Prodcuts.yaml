@@ -1,0 +1,55 @@
+paths:
+  /products:
+    get:
+      summary: obtener todos los Products
+      tags:
+        - Products
+      responses:
+        "200":
+          description: devuelve los Products
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                 $ref: '#components/schemas/Products'
+        "500":
+          description: "hubo un error"
+  /products/{uid}:
+    get:
+      summary: obtener el Products por id
+      tags:
+        - Products
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        description: 'parametro de ruta para identificar el carrito'
+        schema:
+          type: String
+      responses:
+        "200":
+          description: devuelve el carrito por id
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Products'
+        "500":
+          description: "hubo un error"
+    patch:
+      summary: actualizar el carrito por id
+      tags:
+        - Products
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        description: 'parametro de ruta para identificar el carrito ha actualizar'
+        schema:
+          type: String
+      requestBody:
+        require: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/schemas/updateProducts"

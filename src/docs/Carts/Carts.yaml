@@ -1,0 +1,114 @@
+paths:
+  /carts:
+    get:
+      summary: obtener todos los carritos
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: devuelve los carritos
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                 $ref: '#components/schemas/Carts'
+        "500":
+          description: "hubo un error"
+  /carts/{uid}:
+    get:
+      summary: obtener el carrito por id
+      tags:
+        - Carts
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        description: 'parametro de ruta para identificar el carrito'
+        schema:
+          type: String
+      responses:
+        "200":
+          description: devuelve el carrito por id
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Carts'
+        "500":
+          description: "hubo un error"
+    patch:
+      summary: actualizar el carrito por id
+      tags:
+        - Carts
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        description: 'parametro de ruta para identificar el carrito ha actualizar'
+        schema:
+          type: String
+      requestBody:
+        require: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/schemas/updateCarts"
+
+   
+      
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: id autogenerado por mongo
+        title: 
+          type: String
+          description: titulo
+        description: 
+          type: String
+          description: descripcion
+        price: 
+          type: Number
+          description: precio
+      example:
+        _id: ObjectId("asdasdasd")
+        title: manzana
+        description: es una manzana verde
+        price: 40
+        password: 12345
+    updateProducts:
+      type: object
+      properties:
+        title: 
+          type: String
+          description: titulo
+        description: 
+          type: String
+          description: descripcion
+        price: 
+          type: String
+          description: precio
+      example:
+        title: manzana
+        description: es una manzana verde
+        price: 40
+    Carts:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: id autogenerado por mongo
+        title: 
+          type: String
+          description: titulo
+        description: 
+          type: String
+          description: descripcion 
+      example:
+        _id: ObjectId("asdasdasd")
+        title: carrito
+        description: carrito del usuario  
+    

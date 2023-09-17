@@ -1,0 +1,99 @@
+# paths:
+#   /api/users:
+#     get:
+#       summary: obtener todos los usuarios
+#       tags:
+#         - Users
+#       responses:
+#         "200":
+#           description: devuelve los usuarios
+#           content:
+#             application/json:
+#               schema:
+#                 type: array
+#                 items: 
+#                  $ref: '#components/schemas/User'
+#         "500":
+#           description: "hubo un error"
+#   /api/users/{uid}:
+#     get:
+#       summary: obtener el usuario por id
+#       tags:
+#         - Users
+#       parameters:
+#       - name: uid
+#         in: path
+#         required: true
+#         description: 'parametro de ruta para identificar el usuario'
+#         schema:
+#           type: String
+#       responses:
+#         "200":
+#           description: devuelve el usuario por id
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#components/schemas/User'
+#         "500":
+#           description: "hubo un error"
+#     patch:
+#       summary: actualizar el usuario por id
+#       tags:
+#         - Users
+#       parameters:
+#       - name: uid
+#         in: path
+#         required: true
+#         description: 'parametro de ruta para identificar el usuario ha actualizar'
+#         schema:
+#           type: String
+#       requestBody:
+#         require: true
+#         content:
+#           application/json:
+#             schema:
+#               $ref: "#components/schemas/updateUser"
+
+      
+# components:
+#   schemas:
+#     User:
+#       type: object
+#       properties:
+#         _id: 
+#           type: ObjectId
+#           description: id autogenerado por mongo
+#         first_name: 
+#           type: String
+#           description: nombre del usuario
+#         last_name: 
+#           type: String
+#           description: apellido del usuario
+#         email: 
+#           type: String
+#           description: email del usuario
+#         password: 
+#           type: String
+#           description: password del usuario
+#       example:
+#         _id: ObjectId("asdasdasd")
+#         first_name: fede
+#         last_name: currao
+#         email: fedecurrao@gmail.com
+#         password: 12345
+#     updateUser:
+#       type: object
+#       properties:
+#         first_name: 
+#           type: String
+#           description: nombre del usuario
+#         last_name: 
+#           type: String
+#           description: apellido del usuario
+#         email: 
+#           type: String
+#           description: email del usuario
+#       example:
+#         first_name: fede
+#         last_name: currao
+#         email: fedecurrao@gmail.com 
